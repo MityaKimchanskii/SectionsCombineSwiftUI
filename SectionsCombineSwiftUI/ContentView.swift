@@ -8,9 +8,23 @@
 import SwiftUI
 
 struct ContentView: View {
+    
+    private var groceryCategories = GroceryCategory.all()
+    
     var body: some View {
-        Text("Hello, world!")
-            .padding()
+        
+        List {
+            
+            ForEach(self.groceryCategories, id: \.title) { gc in
+                
+                Section(header: Text(gc.title)) {
+                    ForEach(gc.groceryItems, id: \.title) { gi in
+                        Text(gi.title)
+                    }
+                }
+            }
+            
+        }
     }
 }
 
